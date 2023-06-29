@@ -1,5 +1,6 @@
 package Esercizi.SpringBoot.Develhope_Spring.controllers;
 
+import Esercizi.SpringBoot.Develhope_Spring.component.ResturantConfig;
 import Esercizi.SpringBoot.Develhope_Spring.entities.Meal;
 import Esercizi.SpringBoot.Develhope_Spring.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,9 +23,17 @@ public class Ex3 {
      *     ));
      */
     private MealService mealService;
+    private ResturantConfig resturantConfig;
     @Autowired
-    public Ex3(MealService mealService) {
+    public Ex3(MealService mealService, ResturantConfig resturantConfig) {
         this.mealService = mealService;
+        this.resturantConfig = resturantConfig;
+    }
+    @GetMapping(value = "/resturant-config")
+    public ResponseEntity<ResturantConfig> getResturantConfig() {
+        this.resturantConfig.setLocalePieno(true);
+        this.resturantConfig.setMaxPrice(50.00);
+        return ResponseEntity.ok(resturantConfig);
     }
     @PutMapping(value = "/meal")
     public ResponseEntity<String> putMeal(@RequestBody Meal meal){
