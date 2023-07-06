@@ -1,6 +1,15 @@
 package Esercizi.SpringBoot.Develhope_Spring.entities;
 
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+
+@Entity
 public class Meal {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private long id;
     private String name;
     private String description;
     private double price;
@@ -9,6 +18,16 @@ public class Meal {
         this.name = name;
         this.description = description;
         this.price = price;
+    }
+    public Meal (){
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 
     public String getName() {

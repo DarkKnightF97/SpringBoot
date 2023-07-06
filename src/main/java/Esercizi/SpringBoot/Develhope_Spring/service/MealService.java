@@ -1,5 +1,6 @@
 package Esercizi.SpringBoot.Develhope_Spring.service;
 
+import Esercizi.SpringBoot.Develhope_Spring.component.ResturantConfig;
 import Esercizi.SpringBoot.Develhope_Spring.entities.Meal;
 import Esercizi.SpringBoot.Develhope_Spring.repositories.MealDao;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,11 +11,16 @@ import java.util.List;
 @Service
 public class MealService {
     private MealDao mealDao;
+    private ResturantConfig resturantConfig;
     @Autowired
-    public MealService(MealDao mealDao){
+    public MealService(MealDao mealDao, ResturantConfig resturantConfig) {
         this.mealDao = mealDao;
+        this.resturantConfig = resturantConfig;
     }
-    public void addMeal(Meal meal){
+    public void insertMealTest(){
+        mealDao.save(new Meal("Carbonara","Piatto romano", 10.00));
+    }
+    /*public void addMeal(Meal meal){
         if (meal == null) throw new IllegalArgumentException("Meal must not be null");
         if(meal.getName() == null || meal.getName().isEmpty()) throw new IllegalArgumentException("Meal name cannot be null or empty");
         if(meal.getDescription() == null ||meal.getDescription().isEmpty()) throw new IllegalArgumentException("Meal description");
@@ -31,5 +37,5 @@ public class MealService {
     }
     public List<Meal> getMealList(){
         return mealDao.getMealList();
-    }
+    }*/
 }

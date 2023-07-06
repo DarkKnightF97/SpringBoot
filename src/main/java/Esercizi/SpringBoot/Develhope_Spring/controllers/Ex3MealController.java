@@ -8,12 +8,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 import java.util.List;
 
 @RestController
-public class Ex3 {
+public class Ex3MealController {
     /**
      * private List<Meal> mealList = new ArrayList<>(Arrays.asList(
      *             new Meal("Pasta al pesto","pasta con pesto di basilico fresco", 10),
@@ -25,11 +23,16 @@ public class Ex3 {
     private MealService mealService;
     private ResturantConfig resturantConfig;
     @Autowired
-    public Ex3(MealService mealService, ResturantConfig resturantConfig) {
+    public Ex3MealController(MealService mealService, ResturantConfig resturantConfig) {
         this.mealService = mealService;
         this.resturantConfig = resturantConfig;
     }
-    @GetMapping(value = "/resturant-config")
+    @GetMapping(value = "/insert-meal-test")
+    public ResponseEntity<?> insertMealTest(){
+        mealService.insertMealTest();
+        return ResponseEntity.ok().build();
+    }
+   /* @GetMapping(value = "/resturant-config")
     public ResponseEntity<ResturantConfig> getResturantConfig() {
         this.resturantConfig.setLocalePieno(true);
         this.resturantConfig.setMaxPrice(50.00);
