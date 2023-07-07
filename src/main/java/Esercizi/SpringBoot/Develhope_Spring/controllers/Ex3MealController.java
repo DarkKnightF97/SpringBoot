@@ -1,6 +1,7 @@
 package Esercizi.SpringBoot.Develhope_Spring.controllers;
 
 import Esercizi.SpringBoot.Develhope_Spring.component.ResturantConfig;
+import Esercizi.SpringBoot.Develhope_Spring.entities.Ingredient;
 import Esercizi.SpringBoot.Develhope_Spring.entities.Meal;
 import Esercizi.SpringBoot.Develhope_Spring.service.MealService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,10 +28,28 @@ public class Ex3MealController {
         this.mealService = mealService;
         this.resturantConfig = resturantConfig;
     }
-    @GetMapping(value = "/insert-meal-test")
-    public ResponseEntity<?> insertMealTest(){
-        mealService.insertMealTest();
+    @PostMapping
+    public ResponseEntity<?> createMeal(@RequestBody Meal meal){
+        mealService.createMeal(meal);
         return ResponseEntity.ok().build();
+    }
+    @GetMapping(value = "{mealId}")
+    public ResponseEntity<Meal> retrieveMeal(@PathVariable("mealId") long mealId){
+        return ResponseEntity.ok(mealService.getMeal(mealId));
+    }
+    @PutMapping(value = "{mealId}")
+    public ResponseEntity<?> updateMeal(@RequestBody Meal meal, @PathVariable("mealId") long mealId){
+        mealService.updateMeal(meal, mealId);
+        return ResponseEntity.ok().build();
+    }
+    @DeleteMapping(value = "{mealId}")
+    public ResponseEntity<?> deleteMeal(@PathVariable("mealId") long mealId){
+        mealService.deleteMeal(mealId);
+        return ResponseEntity.ok().build();
+    }
+    @GetMapping(value = "/winter-meals")
+    public ResponseEntity<List<Meal>> getWinterMeals(){
+        return ResponseEntity.ok(mealService.getWinterMeal());
     }
    /* @GetMapping(value = "/resturant-config")
     public ResponseEntity<ResturantConfig> getResturantConfig() {

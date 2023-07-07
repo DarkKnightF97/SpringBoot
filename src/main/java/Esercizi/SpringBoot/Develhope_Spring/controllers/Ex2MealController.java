@@ -14,10 +14,10 @@ import java.util.List;
 
 public class Ex2MealController {
     private List<Meal> mealList = new ArrayList<>(Arrays.asList(
-            new Meal("Pasta al pesto","pasta con pesto di basilico fresco", 10),
-            new Meal("Carbonara","pasta tradizionale con uovo, pecorino e guanciale", 15),
-            new Meal("Pasta con le zucchine","pasta con zucchine fritte", 9),
-            new Meal("Pasta al sugo","pasta con sugo di pomodoro", 5)
+            new Meal("Pasta al pesto","pasta con pesto di basilico fresco", 10, true),
+            new Meal("Carbonara","pasta tradizionale con uovo, pecorino e guanciale", 15,true),
+            new Meal("Pasta con le zucchine","pasta con zucchine fritte", 9, true),
+            new Meal("Pasta al sugo","pasta con sugo di pomodoro", 5, true)
     ));
     @GetMapping("/meal")
     public ResponseEntity<List> mealResponse(){
